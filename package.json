@@ -1,5 +1,5 @@
 {
-  "name": "express-starter-pack",
+  "name": "qris-dynamic-generator",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/resitdc/express-starter-pack.git"
+    "url": "git+https://github.com/resitdc/qris-dynamic-generator.git"
   },
   "keywords": [
     "QRIS",
@@ -19,9 +19,9 @@
   "author": "Restu D. Cahyo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/resitdc/express-starter-pack/issues"
+    "url": "https://github.com/resitdc/qris-dynamic-generator/issues"
   },
-  "homepage": "https://github.com/resitdc/express-starter-pack#readme",
+  "homepage": "https://github.com/resitdc/qris-dynamic-generator#readme",
   "devDependencies": {
     "@types/node": "^22.13.1",
     "@types/qrcode": "^1.5.5",
