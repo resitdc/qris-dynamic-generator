@@ -36,9 +36,9 @@ class staticQRIS {
     return finalQRIS + this.calculateCRC16(finalQRIS);
   }
 
-  public async generateBase64(amount: number): Promise<string> {
+  public async generateBase64(amount: number, size: number = 300): Promise<string> {
     const qrCodeString = this.generate(amount);
-    return await QRCode.toDataURL(qrCodeString);
+    return await QRCode.toDataURL(qrCodeString, { width: size, margin: 2 });
   }
 
 }
