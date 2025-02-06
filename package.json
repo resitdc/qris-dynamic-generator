@@ -24,10 +24,12 @@
   "homepage": "https://github.com/resitdc/express-starter-pack#readme",
   "devDependencies": {
     "@types/node": "^22.13.1",
+    "@types/qrcode": "^1.5.5",
     "typescript": "^5.0.4"
   },
   "dependencies": {
     "buffer": "^6.0.3",
-    "crc": "^4.3.2"
+    "crc": "^4.3.2",
+    "qrcode": "^1.5.4"
   }
 }

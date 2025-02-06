@@ -1,6 +1,6 @@
 import crc from "crc";
 import { Buffer } from "buffer";
-
+import QRCode from "qrcode";
 
 class staticQRIS {
   private originalQRIS: string;
@@ -34,6 +34,11 @@ class staticQRIS {
 
     const finalQRIS = parts[0] + amountTag + parts[1];
     return finalQRIS + this.calculateCRC16(finalQRIS);
+  }
+
+  public async generateBase64(amount: number): Promise<string> {
+    const qrCodeString = this.generate(amount);
+    return await QRCode.toDataURL(qrCodeString);
   }
 
 }
