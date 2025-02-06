@@ -1,19 +1,41 @@
-import express, { Application } from "express";
-import dotenv from "dotenv";
-import cors from "cors";
-import routesV1 from "./src/routes/v1/index";
+import crc from "crc";
+import { Buffer } from "buffer";
 
-dotenv.config();
 
-const app: Application = express();
-const port = process.env.PORT || 3000;
+class staticQRIS {
+  private originalQRIS: string;
+  
+  constructor(qris: string) {
+    if (!qris) {
+      throw new Error("QRIS string cannot be empty.");
+    }
+    this.originalQRIS = qris;
+  }
+  
+  private calculateCRC16(qrisString: string): string {
+    const buffer = Buffer.from(qrisString, "utf-8");
+    const crc16 = crc.crc16ccitt(buffer, 0xFFFF).toString(16).toUpperCase();
+    return crc16.padStart(4, "0");
+  }
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cors());
+  public generate(amount: number): string {
+    if (amount <= 0) {
+      throw new Error("Amount must be greater than 0");
+    }
 
-app.use("/api/v1", routesV1);
+    const amountStr = amount.toString();
+    const amountTag = `54${String(amountStr.length).padStart(2, "0")}${amountStr}5802ID`;
+    const qris = this.originalQRIS.slice(0, -4).replace(/010211/, "010212"); 
+    const parts = qris.split("5802ID");
 
-app.listen(port, () => {
-  console.log(`\x1b[94mServer started on\x1b[0m \x1b[92mhttp://localhost:${port}\x1b[0m`);
-});
+    if (parts.length < 2) {
+      throw new Error("QRIS format is incorrect");
+    }
+
+    const finalQRIS = parts[0] + amountTag + parts[1];
+    return finalQRIS + this.calculateCRC16(finalQRIS);
+  }
+
+}
+
+export default staticQRIS;
