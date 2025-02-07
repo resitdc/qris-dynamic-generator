@@ -43,4 +43,5 @@ class staticQRIS {
 
 }
 
-export default staticQRIS;
+module.exports = staticQRIS;
+module.exports.default = staticQRIS;
