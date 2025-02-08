@@ -10,7 +10,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
-    "types": ["node"],
-  },
-  "types": ["node"],
+    "resolveJsonModule": true,
+    "typeRoots": ["./node_modules/@types"]
+  }
 }
