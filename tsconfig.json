@@ -11,6 +11,8 @@
     "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
+    "emitDeclarationOnly": false,
+    "declaration": true,
     "typeRoots": ["./node_modules/@types"]
   }
 }
